@@ -120,10 +120,9 @@ public class KortSamling {
 		// TODO - START
 		antall = 0;
 		samling = new Kort[antall];
-		}
-		// throw new UnsupportedOperationException(TODO.method());
-		// TODO - END
-	
+	}
+	// throw new UnsupportedOperationException(TODO.method());
+	// TODO - END
 
 	/**
 	 * Ser på siste kortet i samlinga.
@@ -135,15 +134,11 @@ public class KortSamling {
 
 		// TODO - START
 		Kort k = null;
-		if (antall == 0) {
-			k = null;
-		} if( antall != 0) {
-			k = new Kort(samling[antall-1].getFarge(), samling[antall-1].getVerdi());
+		if (antall != 0) {
+			k = new Kort(samling[antall - 1].getFarge(), samling[antall - 1].getVerdi());
 		}
-		 return k;
-			
-			
-			
+		return k;
+
 		// TODO - END
 
 	}
@@ -156,8 +151,19 @@ public class KortSamling {
 	public Kort taSiste() {
 
 		// TODO - START
+		boolean siste = false;
+		Kort k = null;
+		while (antall <= samling.length && !siste) {
+			if (antall > 0) {
+				k = new Kort(samling[antall - 1].getFarge(), samling[antall - 1].getVerdi());
+				antall--;
+				siste = true;
+			} else if (antall == 0) {
+				siste = true;
+			}
 
-		throw new UnsupportedOperationException(TODO.method());
+		}
+		return k;
 
 		// TODO - END
 	}
@@ -174,19 +180,18 @@ public class KortSamling {
 		// TODO - START
 		boolean har = false;
 		int i = 0;
-		
+
 		if (kort == null) {
 			har = false;
 		}
 		while (i < samling.length && !har) {
-			 if (samling[i] != null) {
+			if (samling[i] != null) {
 				har = samling[i].lik(kort);
 				i++;
-				}
 			}
-			return har;
 		}
-		
+		return har;
+	}
 
 	// TODO - END
 
