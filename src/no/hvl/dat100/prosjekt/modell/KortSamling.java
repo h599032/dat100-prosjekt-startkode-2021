@@ -99,21 +99,11 @@ public class KortSamling {
 
 		// TODO - START
 		Kort kort;
-		for (int i = 1; i <= Regler.MAKS_KORT_FARGE; i++) {
-			kort = new Kort(Kortfarge.Hjerter, i);
-			leggTil(kort);
-		}
-		for (int i = 1; i <= Regler.MAKS_KORT_FARGE; i++) {
-			kort = new Kort(Kortfarge.Ruter, i);
-			leggTil(kort);
-		}
-		for (int i = 1; i <= Regler.MAKS_KORT_FARGE; i++) {
-			kort = new Kort(Kortfarge.Klover, i);
-			leggTil(kort);
-		}
-		for (int i = 1; i <= Regler.MAKS_KORT_FARGE; i++) {
-			kort = new Kort(Kortfarge.Spar, i);
-			leggTil(kort);
+		for (Kortfarge f : Kortfarge.values()) {
+			for (int i = 0; i <= Regler.MAKS_KORT_FARGE; i++) {
+				kort = new Kort(f, i);
+				leggTil(kort);
+			}
 		}
 
 		// Husk: bruk Regler.MAKS_KORT_FARGE for å få antall kort per farge
@@ -173,9 +163,15 @@ public class KortSamling {
 	public boolean har(Kort kort) {
 
 		// TODO - START
-	
+		boolean har = false;
+		int i = 0;
+		while (i < samling.length && har) {
+			if (samling[i].equals(kort)) {
+				har = true;
+			}
+		}
 		return false;
-		
+
 		// TODO - END
 
 	}
