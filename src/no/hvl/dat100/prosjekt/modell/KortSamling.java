@@ -118,10 +118,12 @@ public class KortSamling {
 	public void fjernAlle() {
 
 		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
+		antall = 0;
+		samling = new Kort[antall];
+		}
+		// throw new UnsupportedOperationException(TODO.method());
 		// TODO - END
-	}
+	
 
 	/**
 	 * Ser på siste kortet i samlinga.
