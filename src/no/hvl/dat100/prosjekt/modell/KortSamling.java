@@ -132,15 +132,22 @@ public class KortSamling {
 	public Kort seSiste() {
 
 		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
+		Kort k = null;
+		if (antall == 0) {
+			k = null;
+		} if( antall != 0) {
+			k = new Kort(samling[antall-1].getFarge(), samling[antall-1].getVerdi());
+		}
+		 return k;
+			
+			
+			
 		// TODO - END
 
 	}
 
 	/**
-	 * Tek ut siste kort fra samlinga.
+	 * Tar ut siste kort fra samlinga.
 	 * 
 	 * @return siste kortet i samlinga. Dersom samalinga er tom, returneres null.
 	 */
@@ -165,16 +172,21 @@ public class KortSamling {
 		// TODO - START
 		boolean har = false;
 		int i = 0;
-		while (i < samling.length && har) {
-			if (samling[i].equals(kort)) {
-				har = true;
-			}
+		
+		if (kort == null) {
+			har = false;
 		}
-		return false;
+		while (i < samling.length && !har) {
+			 if (samling[i] != null) {
+				har = samling[i].lik(kort);
+				i++;
+				}
+			}
+			return har;
+		}
+		
 
-		// TODO - END
-
-	}
+	// TODO - END
 
 	/**
 	 * Fjernar et kort frå samlinga. Dersom kortet ikke finnest i samlinga, skjer
