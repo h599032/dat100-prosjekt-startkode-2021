@@ -207,9 +207,15 @@ public class KortSamling {
 	public boolean fjern(Kort kort) {
 
 		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
+		boolean fjern = false;
+		
+		while (antall <= samling.length && !fjern) {
+			if (samling[antall].lik(kort) && antall > 0) {
+				8
+			}
+		}
+		
+		return fjern; 
 		// TODO - END
 	}
 
