@@ -178,19 +178,17 @@ public class KortSamling {
 	public boolean har(Kort kort) {
 
 		// TODO - START
-		boolean har = false;
 		int i = 0;
-
 		if (kort == null) {
-			har = false;
+			return false;
 		}
-		while (i < samling.length && !har) {
-			if (samling[i] != null) {
-				har = samling[i].lik(kort);
-				i++;
-			}
+		while (i < samling.length) {
+			if (kort.equals(samling[i])) {
+				return true;
+			} i++;
+				
 		}
-		return har;
+		return false;
 	}
 
 	// TODO - END
@@ -207,15 +205,18 @@ public class KortSamling {
 	public boolean fjern(Kort kort) {
 
 		// TODO - START
-		boolean fjern = false;
-		
-		while (antall <= samling.length && !fjern) {
-			if (samling[antall].lik(kort) && antall > 0) {
-				8
-			}
+		int i = 0;
+		if (kort == null) {
+			return false;
 		}
-		
-		return fjern; 
+		while ( i < samling.length) {
+			if (kort.equals(samling[i])) {
+				samling[i] = null;
+				antall--;
+				return true;
+			} else i++;
+		}
+		return false;
 		// TODO - END
 	}
 
@@ -228,8 +229,18 @@ public class KortSamling {
 	public Kort[] getAllekort() {
 
 		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
+		samling = new Kort[antall];
+		for (int i = 0; antall < samling.length; i++) {
+			if (antall < samling.length) {
+				Kort a = new Kort(samling[i].getFarge(), samling[i].getVerdi());
+			samling[i] = a;
+			antall++;
+		}
+		
+		}
+		
+		
+		return samling;
 
 		// TODO - END
 
