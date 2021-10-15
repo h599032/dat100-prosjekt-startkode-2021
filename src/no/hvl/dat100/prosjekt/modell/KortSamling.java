@@ -98,11 +98,10 @@ public class KortSamling {
 	public void leggTilAlle() {
 
 		// TODO - START
-		Kort kort;
+		
 		for (Kortfarge f : Kortfarge.values()) {
-			for (int i = 0; i <= Regler.MAKS_KORT_FARGE; i++) {
-				kort = new Kort(f, i);
-				leggTil(kort);
+			for (int i = 1; i <= Regler.MAKS_KORT_FARGE; i++) {
+				leggTil(new Kort(f,i));
 			}
 		}
 
@@ -185,8 +184,9 @@ public class KortSamling {
 		while (i < samling.length) {
 			if (kort.equals(samling[i])) {
 				return true;
-			} i++;
-				
+			}
+			i++;
+
 		}
 		return false;
 	}
@@ -209,12 +209,13 @@ public class KortSamling {
 		if (kort == null) {
 			return false;
 		}
-		while ( i < samling.length) {
+		while (i < samling.length) {
 			if (kort.equals(samling[i])) {
 				samling[i] = null;
 				antall--;
 				return true;
-			} else i++;
+			} else
+				i++;
 		}
 		return false;
 		// TODO - END
@@ -227,21 +228,21 @@ public class KortSamling {
 	 *         som i kortsamlinga.
 	 */
 	public Kort[] getAllekort() {
-
+		
 		// TODO - START
-		samling = new Kort[antall];
-		for (int i = 0; antall < samling.length; i++) {
-			if (antall < samling.length) {
+		if (antall == 0) {
+			samling = new Kort[antall];
+			return samling;
+		}
+		Kort[] allekort = new Kort[antall];
+		for (int i = 0; i < antall; i++) {
+			if (samling[i] != null) {
 				Kort a = new Kort(samling[i].getFarge(), samling[i].getVerdi());
-			samling[i] = a;
-			antall++;
-		}
-		
-		}
-		
-		
-		return samling;
+				allekort[i] = a;
 
+			}
+		}
+		return allekort;
 		// TODO - END
 
 	}

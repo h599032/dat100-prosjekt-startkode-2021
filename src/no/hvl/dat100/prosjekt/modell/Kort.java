@@ -147,7 +147,7 @@ public class Kort implements Comparable<Kort> {
 	 *            objektet som this blir sammenlignet med.
 	 * 
 	 * @return Verdien 0 om korta er like, en verdi mindre enn 0 om this kjem
-	 *         først og en verdi større enn 0 om this kjem sist.
+	 *         f�rst og en verdi større enn 0 om this kjem sist.
 	 */
 	public int compareTo(Kort kort) {
 		

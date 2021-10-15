@@ -3,6 +3,7 @@ package no.hvl.dat100.prosjekt.kontroll;
 import no.hvl.dat100.prosjekt.modell.KortSamling;
 import no.hvl.dat100.prosjekt.modell.KortUtils;
 import no.hvl.dat100.prosjekt.TODO;
+import no.hvl.dat100.prosjekt.kontroll.dommer.Regler;
 import no.hvl.dat100.prosjekt.modell.Kort;
 
 /**
@@ -24,7 +25,10 @@ public class Bord {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.constructor("Bord"));
+		bunkeFra = new KortSamling();
+		bunkeFra.leggTilAlle();
+		bunkeTil = new KortSamling();
+		//throw new UnsupportedOperationException(TODO.constructor("Bord"));
 		// TODO - END
 	}
 	
@@ -58,8 +62,11 @@ public class Bord {
 	public boolean bunketilTom() {
 		
 		// TODO - START
-				
-		throw new UnsupportedOperationException(TODO.method());
+		if (bunkeTil.getAntalKort() == 0) {
+			return true;
+		}
+		return false;
+		// throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - END
 	}
@@ -72,8 +79,11 @@ public class Bord {
 	public boolean bunkefraTom() {
 		
 		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
+		if (bunkeFra.getAntalKort() == 0) {
+			return true;
+		}
+		return false;
+		// throw new UnsupportedOperationException(TODO.method());
 	
 		// TODO - END
 		
@@ -87,8 +97,8 @@ public class Bord {
 	public int antallBunkeFra() {
 		
 		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
+		return bunkeFra.getAntalKort();
+		// throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - END
 	}
@@ -101,21 +111,29 @@ public class Bord {
 	public int antallBunkeTil() {
 		
 		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
+		return bunkeTil.getAntalKort();
+		// throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - END
 	}
 	
 	/**
-	 * Tar Ã¸verste kortet fra fra-bunken og legger dettte til til-bunken (med
-	 * billedsiden opp, men det trenger ikke gruppen tenke pÃ¥).
+	 * Tar øverste kortet fra fra-bunken og legger dettte til til-bunken (med
+	 * billedsiden opp, men det trenger ikke gruppen tenke på).
 	 */
 	public void vendOversteFraBunke() {
 		
 		// TODO - START
+		Kort[]  samling = bunkeFra.getSamling();
+		Kort[] samling2 = bunkeTil.getSamling();
+		if (antallBunkeFra() < samling.length) {
+		samling[antallBunkeFra()] = samling2[antallBunkeTil()+1]; 
+		antallBunkeFra();
+		}
 		
-		throw new UnsupportedOperationException(TODO.method());
+		
+		
+		// throw new UnsupportedOperationException(TODO.method());
 		// TODO - END
 		
 	}
