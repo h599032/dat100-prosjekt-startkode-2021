@@ -10,8 +10,8 @@ import no.hvl.dat100.prosjekt.modell.Kort;
 import no.hvl.dat100.prosjekt.modell.KortSamling;
 
 /**
- * Klasse som for Ã¥ representere en vriÃ¥tter nord-spiller. Strategien er Ã¥ lete
- * gjennom kortene man har pÃ¥ hand og spille et tilfeldig som lovlig.
+ * Klasse som for å representere en vriåtter nord-spiller. Strategien er å lete
+ * gjennom kortene man har på hand og spille et tilfeldig som lovlig.
  *
  */
 public class NordSpiller extends Spiller {
@@ -28,7 +28,7 @@ public class NordSpiller extends Spiller {
 		KortSamling lovlige = new KortSamling();
 		KortSamling attere = new KortSamling();
 
-		// GÃ¥ igjennom kort Ã¥ finn ut hvilke som kan spilles
+		// Går igjennom kort for å finne ut hvilke som kan spilles
 		for (Kort k : hand) {
 			if (Regler.kanLeggeNed(k, topp)) {
 				if (Regler.atter(k)) {

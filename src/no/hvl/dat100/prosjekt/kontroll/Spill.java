@@ -29,8 +29,10 @@ public class Spill {
 	public Spill() {
 		
 		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.constructor("Spill"));
+		 nord = new NordSpiller(Spillere.NORD);
+		 syd = new SydSpiller(Spillere.SYD);
+		bord = new Bord();
+		// throw new UnsupportedOperationException(TODO.constructor("Spill"));
 		// TODO - END
 		
 	}
@@ -43,8 +45,8 @@ public class Spill {
 	public Bord getBord() {
 		
 		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
+		return bord;
+		// throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - END
 		
@@ -58,8 +60,8 @@ public class Spill {
 	public ISpiller getSyd() {
 		
 		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
+		return syd;
+		// throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - END
 		
@@ -73,8 +75,8 @@ public class Spill {
 	public ISpiller getNord() {
 		
 		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
+		return nord;
+		// throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - END
 	}
@@ -83,16 +85,30 @@ public class Spill {
 	 * Metoden oppretter to spillere, nord og syd. Det opprettes to bunker, fra
 	 * og til. Alle kortene legges til fra. Bunken fra stokkes. Deretter deles
 	 * det ut kort fra fra-bunken til nord og syd i henhold til regler. Til
-	 * slutt tas Ã¸verste kortet fra fra-bunken og legges til til-bunken.
+	 * slutt tas øverste kortet fra fra-bunken og legges til til-bunken.
 	 * 
-	 * Nord har type RandomSpiller (som er forhÃ¥ndefinert). Syd vil vÃ¦re spiller
+	 * Nord har type RandomSpiller (som er forhåndefinert). Syd vil være spiller
 	 * av en klasse laget av gruppen (implementeres i oppgave 3).
 	 */
 	public void start() {
 		
 		// TODO - START
+		// Nord - RandomSpiller
+		// spiller laget av en klasse(implementeres i oppg3
+		bord.getBunkeFra().leggTilAlle();
+		bord.getBunkeFra().getSamling();
 		
-		throw new UnsupportedOperationException(TODO.method());
+		// stokk bunke Fra stokk.bord.getBunkeFra();
+		//dele ut kort fra fra-bunken til nord og syd i henhold til regler
+		for (int i = 0; i < ANTALL_KORT_START; i++) {
+			nord.getHand().leggTil(bord.getBunkeFra().getSamling()[i]);
+			syd.getHand().leggTil(bord.getBunkeFra().getSamling()[i]);
+		
+		}
+		bord.vendOversteFraBunke();
+		
+		
+		// throw new UnsupportedOperationException(TODO.method());
 		// TODO - END
 	}
 
@@ -104,7 +120,7 @@ public class Spill {
 
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		 throw new UnsupportedOperationException(TODO.method());
 		// TODO - END
 	}
 
@@ -121,8 +137,12 @@ public class Spill {
 	public Kort trekkFraBunke(ISpiller spiller) {
 
 		// TODO - START
-			
-		throw new UnsupportedOperationException(TODO.method());
+		if (bord.taOversteFraBunke() == null) {
+			bord.snuTilBunken();
+		}
+			Kort k = bord.taOversteFraBunke();
+			return k;
+		// throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - END
 	}
@@ -133,7 +153,7 @@ public class Spill {
 	 * @param spiller
 	 *            spiller som handle.
 	 * 
-	 * @return handlingen som blir utfÃ¸rt.
+	 * @return handlingen som blir utført.
 	 */
 	public Handling nesteHandling(ISpiller spiller) {
 		
@@ -167,7 +187,7 @@ public class Spill {
 	}
 
 	/**
-	 * Metode for Ã¥ si forbi. MÃ¥ nullstille antall ganger spilleren har trukket
+	 * Metode for å si forbi. Må nullstille antall ganger spilleren har trukket
 	 * kort.
 	 * 
 	 * @param spiller
@@ -177,19 +197,19 @@ public class Spill {
 		
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		 throw new UnsupportedOperationException(TODO.method());
 	
 		// TODO - END
 	}
 
 	/**
-	 * Metode for Ã¥ utfÃ¸re en handling (trekke, spille, forbi). Dersom handling
-	 * er kort, blir kortet ogsÃ¥ spilt.
+	 * Metode for å utføre en handling (trekke, spille, forbi). Dersom handling
+	 * er kort, blir kortet også spilt.
 	 * 
 	 * @param spiller
-	 *            spiller som utfÃ¸rer handlingen.
+	 *            spiller som utfører handlingen.
 	 * @param handling
-	 *            handling som utfÃ¸res.
+	 *            handling som utføres.
 	 * 
 	 * @return kort som trekkes, kort som spilles eller null ved forbi.
 	 */
