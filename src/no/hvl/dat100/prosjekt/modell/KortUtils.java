@@ -38,14 +38,17 @@ public class KortUtils {
 	public static void stokk(KortSamling samling) {
 
 		// TODO - START
-		int rad = 0;
-		Kort[] sam = samling.getSamling();
-		int ant = samling.getAntalKort();
-		Random rand = new Random();
-		for (int i = 0; i < ant; i++) {
-			rad = rand.nextInt(ant - 1);
-			sam[i] = sam[rad];
-		}
+//		int rad = 0;
+//		Kort[] sam = samling.getSamling();
+//		int ant = samling.getAntalKort();
+//		Random rand = new Random();
+//		for (int i = 0; i < ant; i++) {
+//			rad = rand.nextInt(ant - 1);
+//			sam[i] = sam[rad];
+//		}
+		Random stokk = new Random();
+		stokk.nextInt();
+		
 		// throw new UnsupportedOperationException(TODO.method());
 		// TODO - END
 	}

@@ -52,6 +52,7 @@ public abstract class Spiller implements ISpiller {
 	public Spiller(Spillere spiller) {
 		
 		// TODO - START
+		hand =  new KortSamling();
 		this.spiller = spiller;
 		// throw new UnsupportedOperationException(TODO.constructor("Spiller"));
 		// TODO - END

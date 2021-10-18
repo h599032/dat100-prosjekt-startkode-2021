@@ -96,16 +96,13 @@ public class Spill {
 		// Nord - RandomSpiller
 		// spiller laget av en klasse(implementeres i oppg3
 		bord.getBunkeFra().leggTilAlle();
-		bord.getBunkeFra().getSamling();
 		
 		// stokk bunke Fra stokk.bord.getBunkeFra();
 		//dele ut kort fra fra-bunken til nord og syd i henhold til regler
 		for (int i = 0; i < ANTALL_KORT_START; i++) {
 			nord.getHand().leggTil(bord.getBunkeFra().getSamling()[i]);
-			syd.getHand().leggTil(bord.getBunkeFra().getSamling()[i]);
-		
+			bord.getBunkeFra().fjern(bord.getBunkeFra().getSamling()[i]);
 		}
-		bord.vendOversteFraBunke();
 		
 		
 		// throw new UnsupportedOperationException(TODO.method());
@@ -141,6 +138,9 @@ public class Spill {
 			bord.snuTilBunken();
 		}
 			Kort k = bord.taOversteFraBunke();
+			spiller.getHand().leggTil(k);
+			spiller.setAntallTrekk(spiller.getAntallTrekk()+1);
+			bord.getBunkeFra().fjern(k);
 			return k;
 		// throw new UnsupportedOperationException(TODO.method());
 
