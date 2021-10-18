@@ -5,6 +5,8 @@ import java.util.Random;
 import no.hvl.dat100.prosjekt.TODO;
 
 public class KortUtils {
+	
+	private static Random random = new Random();
 
 	/**
 	 * Sorterer en samling. Rekkefølgen er bestemt av compareTo() i Kort-klassen.
@@ -46,11 +48,22 @@ public class KortUtils {
 //			rad = rand.nextInt(ant - 1);
 //			sam[i] = sam[rad];
 //		}
-		Random stokk = new Random();
-		stokk.nextInt();
+//		Random stokk = new Random();
+//		stokk.nextInt();
 		
+		Kort[] kortStokk = samling.getSamling();
+		int antall = samling.getAntalKort();
+		for (int i = 0; i < antall; i++) {
+			swap(kortStokk, i, random.nextInt(antall));
+		}
+
 		// throw new UnsupportedOperationException(TODO.method());
 		// TODO - END
 	}
 
+	private static void swap(Kort[] kort, int a, int b) {
+		Kort temp = kort[a];
+		kort[a] = kort[b];
+		kort[b] = temp;
+	}
 }

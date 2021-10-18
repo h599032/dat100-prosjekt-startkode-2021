@@ -52,7 +52,7 @@ public abstract class Spiller implements ISpiller {
 	public Spiller(Spillere spiller) {
 		
 		// TODO - START
-		hand =  new KortSamling();
+		hand = new KortSamling();
 		this.spiller = spiller;
 		// throw new UnsupportedOperationException(TODO.constructor("Spiller"));
 		// TODO - END
@@ -106,10 +106,8 @@ public abstract class Spiller implements ISpiller {
 	public boolean erFerdig() {
 		
 		// TODO - START
-		if (getAntallKort() == 0) {
-			return true;
-		}
-		return false;
+//		return getAntallKort() == 0;
+		return hand.erTom();
 		// throw new UnsupportedOperationException(TODO.method());
 		// TODO - END
 		

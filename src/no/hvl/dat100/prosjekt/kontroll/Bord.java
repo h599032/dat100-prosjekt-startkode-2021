@@ -62,12 +62,7 @@ public class Bord {
 	public boolean bunketilTom() {
 
 		// TODO - START
-		if (bunkeTil.getAntalKort() == 0) {
-			return true;
-		}
-		return false;
-		// throw new UnsupportedOperationException(TODO.method());
-
+		return bunkeTil.getAntalKort() == 0;
 		// TODO - END
 	}
 
@@ -79,12 +74,7 @@ public class Bord {
 	public boolean bunkefraTom() {
 
 		// TODO - START
-		if (bunkeFra.getAntalKort() == 0) {
-			return true;
-		}
-		return false;
-		// throw new UnsupportedOperationException(TODO.method());
-
+		return bunkeFra.getAntalKort() == 0;
 		// TODO - END
 
 	}
@@ -98,8 +88,6 @@ public class Bord {
 
 		// TODO - START
 		return bunkeFra.getAntalKort();
-		// throw new UnsupportedOperationException(TODO.method());
-
 		// TODO - END
 	}
 
@@ -124,10 +112,12 @@ public class Bord {
 	public void vendOversteFraBunke() {
 
 		// TODO - START
-		Kort[] samling = bunkeFra.getSamling();
-		Kort k = samling[antallBunkeFra()-1];
-		bunkeTil.leggTil(k);
-		bunkeFra.fjern(k);
+//		Kort[] samling = bunkeFra.getSamling();
+//		Kort k = samling[antallBunkeFra()-1];
+//		bunkeTil.leggTil(k);
+//		bunkeFra.fjern(k);
+
+		bunkeTil.leggTil(bunkeFra.taSiste());
 
 		// throw new UnsupportedOperationException(TODO.method());
 		// TODO - END
@@ -175,12 +165,22 @@ public class Bord {
 	public void snuTilBunken() {
 
 		// TODO - START
-		for(int i = 0; i < antallBunkeTil()-1; i++) {
-		if (bunkeFra == null) {
-			
+		// frabunke: der kort trekkes fra
+		// tilbunke: der kort spilles til (alle kan se disse)
+
+		// alle kortene bortsett fra det siste skal flyttes til frabunken
+		Kort siste = bunkeTil.taSiste(); // sparer på det siste
+		Kort[] resten = bunkeTil.getAllekort(); // henter ut resten som skal flyttes til frabunke
+
+		// nå kan vi fjerne alle kortene i
+		bunkeTil.fjernAlle();
+		bunkeTil.leggTil(siste);
+
+		// Deretter legges alle de andre kortene i til-bunken over i fra-bunken
+		for (Kort kort : resten) {
+			bunkeFra.leggTil(kort);
 		}
-		}
-		throw new UnsupportedOperationException(TODO.method());
+
 		// TODO - END
 	}
 

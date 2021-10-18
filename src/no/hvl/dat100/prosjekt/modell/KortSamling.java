@@ -14,6 +14,7 @@ public class KortSamling {
 
 	private final int MAKS_KORT = 4 * Regler.MAKS_KORT_FARGE;
 
+	// ArrayList implementasjon
 	private Kort[] samling;
 	private int antall;
 
@@ -63,12 +64,7 @@ public class KortSamling {
 
 		// TODO - START
 
-		boolean tom = false;
-		if (antall == 0) {
-			tom = true;
-		}
-
-		return tom;
+		return antall == 0;
 
 		// throw new UnsupportedOperationException(TODO.method());
 
@@ -83,10 +79,13 @@ public class KortSamling {
 	public void leggTil(Kort kort) {
 
 		// TODO - START
-		if (antall < samling.length) {
-			samling[antall] = kort;
-			antall++;
-		}
+//		if (antall < samling.length) {
+//			samling[antall] = kort;
+//			antall++;
+//		}
+		System.out.println(samling.length);
+
+		samling[antall++] = kort;
 	}
 
 	// TODO - END
@@ -117,8 +116,9 @@ public class KortSamling {
 	public void fjernAlle() {
 
 		// TODO - START
+
+		samling = new Kort[MAKS_KORT];
 		antall = 0;
-		samling = new Kort[antall];
 	}
 	// throw new UnsupportedOperationException(TODO.method());
 	// TODO - END
@@ -132,11 +132,14 @@ public class KortSamling {
 	public Kort seSiste() {
 
 		// TODO - START
-		Kort k = null;
-		if (antall != 0) {
-			k = new Kort(samling[antall - 1].getFarge(), samling[antall - 1].getVerdi());
-		}
-		return k;
+//		Kort k = null;
+//		if (antall != 0) {
+//			k = new Kort(samling[antall - 1].getFarge(), samling[antall - 1].getVerdi());
+//		}
+//		return k;
+
+		if (erTom()) return null;
+		return samling[antall - 1];
 
 		// TODO - END
 
@@ -150,19 +153,24 @@ public class KortSamling {
 	public Kort taSiste() {
 
 		// TODO - START
-		boolean siste = false;
-		Kort k = null;
-		while (antall <= samling.length && !siste) {
-			if (antall > 0) {
-				k = new Kort(samling[antall - 1].getFarge(), samling[antall - 1].getVerdi());
-				antall--;
-				siste = true;
-			} else if (antall == 0) {
-				siste = true;
-			}
+//		boolean siste = false;
+//		Kort k = null;
+//		while (antall <= samling.length && !siste) {
+//			if (antall > 0) {
+//				k = new Kort(samling[antall - 1].getFarge(), samling[antall - 1].getVerdi());
+//				antall--;
+//				siste = true;
+//			} else if (antall == 0) {
+//				siste = true;
+//			}
+//
+//		}
+//		return k;
 
-		}
-		return k;
+		if (erTom()) return null;
+		Kort siste = samling[--antall];
+		samling[antall] = null;
+		return siste;
 
 		// TODO - END
 	}
@@ -170,7 +178,7 @@ public class KortSamling {
 	/**
 	 * Undersøker om et kort finst i samlinga.
 	 * 
-	 * @param kort.
+	 * @param kort kortet som sjekkes
 	 * 
 	 * @return true om kortet finst i samlinga, false ellers.
 	 */
@@ -230,19 +238,26 @@ public class KortSamling {
 	public Kort[] getAllekort() {
 		
 		// TODO - START
-		if (antall == 0) {
-			samling = new Kort[antall];
-			return samling;
-		}
-		Kort[] allekort = new Kort[antall];
-		for (int i = 0; i < antall; i++) {
-			if (samling[i] != null) {
-				Kort a = new Kort(samling[i].getFarge(), samling[i].getVerdi());
-				allekort[i] = a;
+//		if (antall == 0) {
+//			samling = new Kort[antall];
+//			return samling;
+//		}
+//		Kort[] allekort = new Kort[antall];
+//		for (int i = 0; i < antall; i++) {
+//			if (samling[i] != null) {
+//				Kort a = new Kort(samling[i].getFarge(), samling[i].getVerdi());
+//				allekort[i] = a;
+//
+//			}
+//		}
+//		return allekort;
 
-			}
+		var bunke = new Kort[antall];
+		for (int i = 0; i < antall; i++) {
+			bunke[i] = samling[i];
 		}
-		return allekort;
+		return bunke;
+
 		// TODO - END
 
 	}

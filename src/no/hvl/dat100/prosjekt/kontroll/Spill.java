@@ -27,10 +27,10 @@ public class Spill {
 	public final static int ANTALL_KORT_START = Regler.ANTALL_KORT_START;
 	
 	public Spill() {
-		
+
 		// TODO - START
-		 nord = new NordSpiller(Spillere.NORD);
-		 syd = new SydSpiller(Spillere.SYD);
+		nord = new NordSpiller(Spillere.NORD);
+		syd = new SydSpiller(Spillere.SYD);
 		bord = new Bord();
 		// throw new UnsupportedOperationException(TODO.constructor("Spill"));
 		// TODO - END
@@ -95,15 +95,18 @@ public class Spill {
 		// TODO - START
 		// Nord - RandomSpiller
 		// spiller laget av en klasse(implementeres i oppg3
-		bord.getBunkeFra().leggTilAlle();
-		
-		// stokk bunke Fra stokk.bord.getBunkeFra();
-		//dele ut kort fra fra-bunken til nord og syd i henhold til regler
-		for (int i = 0; i < ANTALL_KORT_START; i++) {
-			nord.getHand().leggTil(bord.getBunkeFra().getSamling()[i]);
-			bord.getBunkeFra().fjern(bord.getBunkeFra().getSamling()[i]);
-		}
-		
+//		bord.getBunkeFra().leggTilAlle();
+//
+//		// stokk bunke Fra stokk.bord.getBunkeFra();
+//		//dele ut kort fra fra-bunken til nord og syd i henhold til regler
+//		for (int i = 0; i < ANTALL_KORT_START; i++) {
+//			nord.getHand().leggTil(bord.getBunkeFra().getSamling()[i]);
+//			bord.getBunkeFra().fjern(bord.getBunkeFra().getSamling()[i]);
+//		}
+
+		KortUtils.stokk(bord.getBunkeFra());
+		delutKort();
+		bord.getBunkeTil().leggTil(bord.taOversteFraBunke());
 		
 		// throw new UnsupportedOperationException(TODO.method());
 		// TODO - END
@@ -114,11 +117,10 @@ public class Spill {
 	 * 
 	 */
 	private void delutKort() {
-
-		// TODO - START
-		
-		 throw new UnsupportedOperationException(TODO.method());
-		// TODO - END
+		for (int i = 0; i < ANTALL_KORT_START; i++) {
+			nord.leggTilKort(bord.taOversteFraBunke());
+			syd.leggTilKort(bord.taOversteFraBunke());
+		}
 	}
 
 	/**
@@ -134,14 +136,16 @@ public class Spill {
 	public Kort trekkFraBunke(ISpiller spiller) {
 
 		// TODO - START
-		if (bord.taOversteFraBunke() == null) {
+		if (bord.bunkefraTom()) {
 			bord.snuTilBunken();
 		}
-			Kort k = bord.taOversteFraBunke();
-			spiller.getHand().leggTil(k);
-			spiller.setAntallTrekk(spiller.getAntallTrekk()+1);
-			bord.getBunkeFra().fjern(k);
-			return k;
+
+		Kort k = bord.taOversteFraBunke();
+//		spiller.getHand().leggTil(k);
+//		spiller.setAntallTrekk(spiller.getAntallTrekk() + 1);
+//		bord.getBunkeFra().fjern(k);
+		spiller.trekker(k);
+		return k;
 		// throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - END
