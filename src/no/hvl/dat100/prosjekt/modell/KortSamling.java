@@ -62,13 +62,7 @@ public class KortSamling {
 	public boolean erTom() {
 
 		// TODO - START
-
-		boolean tom = false;
-		if (antall == 0) {
-			tom = true;
-		}
-
-		return tom;
+		return antall == 0;
 
 		// throw new UnsupportedOperationException(TODO.method());
 
@@ -98,10 +92,10 @@ public class KortSamling {
 	public void leggTilAlle() {
 
 		// TODO - START
-		
+
 		for (Kortfarge f : Kortfarge.values()) {
 			for (int i = 1; i <= Regler.MAKS_KORT_FARGE; i++) {
-				leggTil(new Kort(f,i));
+				leggTil(new Kort(f, i));
 			}
 		}
 
@@ -118,7 +112,7 @@ public class KortSamling {
 
 		// TODO - START
 		antall = 0;
-		samling = new Kort[antall];
+		samling = new Kort[MAKS_KORT];
 	}
 	// throw new UnsupportedOperationException(TODO.method());
 	// TODO - END
@@ -132,11 +126,10 @@ public class KortSamling {
 	public Kort seSiste() {
 
 		// TODO - START
-		Kort k = null;
-		if (antall != 0) {
-			k = new Kort(samling[antall - 1].getFarge(), samling[antall - 1].getVerdi());
+		if (erTom()) {
+			return null;
 		}
-		return k;
+		return samling[antall - 1];
 
 		// TODO - END
 
@@ -150,19 +143,14 @@ public class KortSamling {
 	public Kort taSiste() {
 
 		// TODO - START
-		boolean siste = false;
-		Kort k = null;
-		while (antall <= samling.length && !siste) {
-			if (antall > 0) {
-				k = new Kort(samling[antall - 1].getFarge(), samling[antall - 1].getVerdi());
-				antall--;
-				siste = true;
-			} else if (antall == 0) {
-				siste = true;
-			}
 
+		if (erTom()) {
+			return null;
 		}
-		return k;
+		Kort siste = samling[antall - 1];
+		antall--;
+		samling[antall] = null;
+		return siste;
 
 		// TODO - END
 	}
@@ -177,16 +165,13 @@ public class KortSamling {
 	public boolean har(Kort kort) {
 
 		// TODO - START
-		int i = 0;
 		if (kort == null) {
 			return false;
 		}
-		while (i < samling.length) {
+		for (int i = 0; i < samling.length; i++) {
 			if (kort.equals(samling[i])) {
 				return true;
 			}
-			i++;
-
 		}
 		return false;
 	}
@@ -205,17 +190,17 @@ public class KortSamling {
 	public boolean fjern(Kort kort) {
 
 		// TODO - START
-		int i = 0;
+		
 		if (kort == null) {
 			return false;
 		}
-		while (i < samling.length) {
+		for(int i = 0; i < samling.length; i++) {
 			if (kort.equals(samling[i])) {
-				samling[i] = null;
+				samling[i] = null; // fjerner kortet ved å sette lik null
 				antall--;
 				return true;
-			} else
-				i++;
+			} 
+	
 		}
 		return false;
 		// TODO - END
@@ -228,19 +213,11 @@ public class KortSamling {
 	 *         som i kortsamlinga.
 	 */
 	public Kort[] getAllekort() {
-		
+
 		// TODO - START
-		if (antall == 0) {
-			samling = new Kort[antall];
-			return samling;
-		}
 		Kort[] allekort = new Kort[antall];
 		for (int i = 0; i < antall; i++) {
-			if (samling[i] != null) {
-				Kort a = new Kort(samling[i].getFarge(), samling[i].getVerdi());
-				allekort[i] = a;
-
-			}
+			allekort[i] = samling[i];
 		}
 		return allekort;
 		// TODO - END

@@ -106,10 +106,7 @@ public abstract class Spiller implements ISpiller {
 	public boolean erFerdig() {
 		
 		// TODO - START
-		if (getAntallKort() == 0) {
-			return true;
-		}
-		return false;
+		return hand.erTom();
 		// throw new UnsupportedOperationException(TODO.method());
 		// TODO - END
 		
